@@ -1,13 +1,16 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace EventBus.Producer.Events;
+namespace ProducerService.IntegrationEvents;
 
 public class IntegrationEvent
 {
+    [JsonInclude]
     public Guid Id { get; private set; }
 
+    [JsonInclude]
     public DateTime CreatedDate { get; private set; }
 
+    [JsonConstructor]
     public IntegrationEvent()
     {
         Id = Guid.NewGuid();

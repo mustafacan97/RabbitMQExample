@@ -1,4 +1,4 @@
-﻿using EventBus.Producer.Events;
+﻿using ProducerService.IntegrationEvents;
 using Microsoft.Extensions.Options;
 using Polly;
 using RabbitMQ.Client.Exceptions;

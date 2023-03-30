@@ -27,13 +27,15 @@ public class RabbitMQEventBus : IEventBus
 
     #region Constructors and Destructors
 
-    public RabbitMQEventBus(IOptions<RabbitMQSettings> rabbitMQSettings)
+    public RabbitMQEventBus(IOptions<RabbitMQSettings> rabbitMQSettings,
+                            IServiceProvider serviceProvider)
     {
         _rabbitMQSettings = rabbitMQSettings.Value;
         _persistentConnection = new RabbitMQPersistentConnection(rabbitMQSettings);
         _consumerChannel = CreateConsumerChannel();
         _subsManager = new InMemoryEventBusSubscriptionManager(ProcessEventName);
         _subsManager.OnEventRemoved += _subsManager_OnEventRemoved;
+        _serviceProvider = serviceProvider;
     }
 
     #endregion

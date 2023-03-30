@@ -3,11 +3,11 @@ using ConsumerService.IntegrationEvents.Events;
 
 namespace ConsumerService.IntegrationEvents.EventHandlers;
 
-public class OrderCreatedSuccessIntegartionEventHandler : IIntegrationEventHandler<OrderCreatedSuccessIntegrationEvent>
+public class OrderCreatedSuccessIntegrationEventHandler : IIntegrationEventHandler<OrderCreatedSuccessIntegrationEvent>
 {
-    private readonly ILogger<OrderCreatedSuccessIntegartionEventHandler> _logger;
+    private readonly ILogger<OrderCreatedSuccessIntegrationEventHandler> _logger;
 
-    public OrderCreatedSuccessIntegartionEventHandler(ILogger<OrderCreatedSuccessIntegartionEventHandler> logger)
+    public OrderCreatedSuccessIntegrationEventHandler(ILogger<OrderCreatedSuccessIntegrationEventHandler> logger)
     {
         _logger = logger;
     }

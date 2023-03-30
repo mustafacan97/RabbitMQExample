@@ -1,6 +1,7 @@
 ﻿using EventBus.Producer.Abstractions;
-using EventBus.Producer.Events;
+using ProducerService.IntegrationEvents;
 using Microsoft.AspNetCore.Mvc;
+using ProducerService.IntegrationEvents.Events;
 
 namespace EventBus.Producer.Controllers;
 
@@ -15,9 +16,15 @@ public class PublishController : ControllerBase
         _eventBus = eventBus;
     }
 
-    [HttpGet(Name="PublishOrderCreatedIntegrationEvent")]
+    [HttpGet(Name="PublishOrderCreatedSuccessIntegrationEvent")]
     public void Publish1()
     {
-        _eventBus.Publish(new OrderCreatedIntegrationEvent());
+        _eventBus.Publish(new OrderCreatedSuccessIntegrationEvent());
+    }
+
+    [HttpGet(Name = "PublishOrderCreatedFailedIntegrationEvent")]
+    public void Publish2()
+    {
+        _eventBus.Publish(new OrderCreatedFailedIntegrationEvent());
     }
 }

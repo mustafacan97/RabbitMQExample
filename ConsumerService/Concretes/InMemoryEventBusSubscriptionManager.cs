@@ -36,15 +36,15 @@ public class InMemoryEventBusSubscriptionManager : IEventBusSubscriptionManager
     public void Clear() => _handlers.Clear();
 
     public void AddSubscription<T, TH>()
-    where T : IntegrationEvent
-    where TH : IIntegrationEventHandler<T>
+        where T : IntegrationEvent
+        where TH : IIntegrationEventHandler<T>
     {
         var eventName = GetEventKey<T>();
 
         AddSubscription(typeof(TH), eventName);
 
-        if(!_eventTypes.Contains(typeof(TH)))
-            _eventTypes.Add(typeof(TH));
+        if(!_eventTypes.Contains(typeof(T)))
+            _eventTypes.Add(typeof(T));
     }
 
     public string GetEventKey<T>() where T : IntegrationEvent
