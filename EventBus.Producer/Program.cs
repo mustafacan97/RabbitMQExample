@@ -1,10 +1,12 @@
-using EventBus.Producer.Abstractions;
-using EventBus.Producer.Concretes;
+using ProducerService.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<RabbitMQSettings>(builder.Configuration.GetSection(RabbitMQSettings.SectionName));
-builder.Services.AddScoped<IEventBus, RabbitMQEventBus>();
+builder.Services
+    .AddEntityFramework(builder.Configuration)
+    .AddRabbitMQ(builder.Configuration)
+    .RegisterServices()
+    .AddMediatR();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
