@@ -1,4 +1,4 @@
-﻿using ProducerService.IntegrationEvents;
+﻿using ProducerService.Events.IntegrationEvents;
 
 namespace EventBus.Producer.Abstractions;
 

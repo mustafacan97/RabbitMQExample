@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ProducerService.IntegrationEvents.Events;
+namespace ProducerService.Events.IntegrationEvents.Order;
 
 public class OrderCreatedSuccessIntegrationEvent : IntegrationEvent
 {

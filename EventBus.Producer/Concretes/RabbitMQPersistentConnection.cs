@@ -45,9 +45,9 @@ public class RabbitMQPersistentConnection : IDisposable
 
     public void Dispose()
     {
-        _connection?.Dispose();
-        _disposed = true;
-    }
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }    
 
     public bool TryConnect()
     {
@@ -69,9 +69,9 @@ public class RabbitMQPersistentConnection : IDisposable
             {
                 // TODO: add log here, we have connected to RabbitMQ
 
-                _connection.ConnectionShutdown += _connection_ConnectionShutdown;
-                _connection.CallbackException += _connection_CallbackException;
-                _connection.ConnectionBlocked += _connection_ConnectionBlocked;
+                _connection.ConnectionShutdown += Connection_ConnectionShutdown;
+                _connection.CallbackException += Connection_CallbackException;
+                _connection.ConnectionBlocked += Connection_ConnectionBlocked;
                 return true;
             }
 
@@ -83,21 +83,30 @@ public class RabbitMQPersistentConnection : IDisposable
 
     #region Methods
 
-    private void _connection_ConnectionBlocked(object? sender, RabbitMQ.Client.Events.ConnectionBlockedEventArgs e)
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _connection?.Dispose();
+            _disposed = true;
+        }
+    }
+
+    private void Connection_ConnectionBlocked(object? sender, RabbitMQ.Client.Events.ConnectionBlockedEventArgs e)
     {
         if (_disposed) return;
 
         TryConnect();
     }
 
-    private void _connection_CallbackException(object? sender, RabbitMQ.Client.Events.CallbackExceptionEventArgs e)
+    private void Connection_CallbackException(object? sender, RabbitMQ.Client.Events.CallbackExceptionEventArgs e)
     {
         if (_disposed) return;
 
         TryConnect();
     }
 
-    private void _connection_ConnectionShutdown(object? sender, ShutdownEventArgs e)
+    private void Connection_ConnectionShutdown(object? sender, ShutdownEventArgs e)
     {
         // TODO: log connection shutdown
 

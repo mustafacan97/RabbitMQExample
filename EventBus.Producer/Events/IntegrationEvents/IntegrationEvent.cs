@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ProducerService.IntegrationEvents;
+namespace ProducerService.Events.IntegrationEvents;
 
 public class IntegrationEvent
 {
@@ -16,7 +16,7 @@ public class IntegrationEvent
         Id = Guid.NewGuid();
         CreatedDate = DateTime.UtcNow;
     }
-    
+
     public IntegrationEvent(Guid id, DateTime createdDate)
     {
         Id = id;

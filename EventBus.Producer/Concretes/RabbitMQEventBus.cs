@@ -1,5 +1,4 @@
-﻿using ProducerService.IntegrationEvents;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Polly;
 using RabbitMQ.Client.Exceptions;
 using System.Net.Sockets;
@@ -7,6 +6,7 @@ using System.Text.Json;
 using System.Text;
 using EventBus.Producer.Abstractions;
 using RabbitMQ.Client;
+using ProducerService.Events.IntegrationEvents;
 
 namespace EventBus.Producer.Concretes;
 

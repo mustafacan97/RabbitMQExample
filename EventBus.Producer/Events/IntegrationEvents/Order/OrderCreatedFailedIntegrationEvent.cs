@@ -1,4 +1,4 @@
-﻿namespace ProducerService.IntegrationEvents.Events;
+﻿namespace ProducerService.Events.IntegrationEvents.Order;
 
 public class OrderCreatedFailedIntegrationEvent : IntegrationEvent
 {
